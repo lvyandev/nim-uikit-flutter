@@ -2,19 +2,19 @@
 // Use of this source code is governed by a MIT license that can be
 // found in the LICENSE file.
 
-import 'package:nim_chatkit_ui/generated/l10n.dart';
-import 'package:nim_chatkit_ui/view/chat_kit_message_list/pop_menu/chat_kit_pop_actions.dart';
-import 'package:nim_chatkit_ui/view/chat_kit_message_list/widgets/chat_forward_dialog.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:netease_common_ui/router/imkit_router_factory.dart';
 import 'package:netease_common_ui/ui/dialog.dart';
 import 'package:netease_common_ui/utils/color_utils.dart';
 import 'package:netease_corekit_im/model/contact_info.dart';
 import 'package:netease_corekit_im/services/message/chat_message.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:nim_chatkit_ui/generated/l10n.dart';
+import 'package:nim_chatkit_ui/view/chat_kit_message_list/pop_menu/chat_kit_pop_actions.dart';
+import 'package:nim_chatkit_ui/view/chat_kit_message_list/widgets/chat_forward_dialog.dart';
 import 'package:nim_core/nim_core.dart';
 import 'package:provider/provider.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
@@ -73,9 +73,15 @@ class ChatKitMessageListState extends State<ChatKitMessageList> {
         customActions!.onMessageCopy!(message)) {
       return true;
     }
-    Clipboard.setData(ClipboardData(text: message.nimMessage.content));
-    Fluttertoast.showToast(msg: S().chat_message_copy_success);
-    return true;
+
+    String? content = message.nimMessage.content;
+    if (content != null) {
+      Clipboard.setData(ClipboardData(text: content));
+      Fluttertoast.showToast(msg: S().chat_message_copy_success);
+      return true;
+    }
+
+    return false;
   }
 
   _scrollToIndex(String uuid) {

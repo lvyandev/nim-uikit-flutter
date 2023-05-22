@@ -7,11 +7,11 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
-import 'package:nim_chatkit_ui/chat_kit_client.dart';
-import 'package:netease_common_ui/utils/color_utils.dart';
-import 'package:netease_corekit_im/repo/config_repo.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:netease_common_ui/utils/color_utils.dart';
+import 'package:netease_corekit_im/repo/config_repo.dart';
+import 'package:nim_chatkit_ui/chat_kit_client.dart';
 import 'package:nim_core/nim_core.dart';
 
 class ChatKitMessageAudioItem extends StatefulWidget {
@@ -127,12 +127,11 @@ class ChatKitMessageAudioState extends State<ChatKitMessageAudioItem> {
       var config = AudioContext(
           android: AudioContextConfig().buildAndroid(),
           iOS: AudioContextIOS(
-              defaultToSpeaker: false,
               category: isSpeakerphoneOn
                   ? AVAudioSessionCategory.playback
                   : AVAudioSessionCategory.playAndRecord,
               options: [AVAudioSessionOptions.mixWithOthers]));
-      await AudioPlayer.global.setGlobalAudioContext(config);
+      await AudioPlayer.global.setAudioContext(config);
     }
     _audioPlayer.setPlayerMode(PlayerMode.lowLatency);
     _audioPlayer.play(DeviceFileSource(path)).then((value) {

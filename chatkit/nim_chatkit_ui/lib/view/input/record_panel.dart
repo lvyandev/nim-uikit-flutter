@@ -4,10 +4,10 @@
 
 import 'dart:async';
 
-import 'package:netease_common_ui/utils/color_utils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:netease_common_ui/utils/color_utils.dart';
 import 'package:nim_core/nim_core.dart';
 import 'package:provider/provider.dart';
 
@@ -44,7 +44,7 @@ class _RecordPanelState extends State<RecordPanel> {
           color: Colors.transparent,
         );
       });
-      Overlay.of(context)!.insert(_overlayEntry!);
+      Overlay.of(context).insert(_overlayEntry!);
     }
   }
 

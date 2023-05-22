@@ -4,8 +4,10 @@
 
 import 'dart:io';
 
-import 'package:nim_chatkit_ui/view/chat_kit_message_list/helper/chat_message_helper.dart';
-import 'package:nim_chatkit_ui/view/input/emoji_panel.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:netease_common_ui/ui/avatar.dart';
 import 'package:netease_common_ui/ui/dialog.dart';
 import 'package:netease_common_ui/utils/color_utils.dart';
@@ -14,16 +16,14 @@ import 'package:netease_corekit_im/model/team_models.dart';
 import 'package:netease_corekit_im/service_locator.dart';
 import 'package:netease_corekit_im/services/login/login_service.dart';
 import 'package:netease_corekit_im/services/message/chat_message.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:nim_chatkit_ui/view/chat_kit_message_list/helper/chat_message_helper.dart';
+import 'package:nim_chatkit_ui/view/input/emoji_panel.dart';
+import 'package:nim_core/nim_core.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:video_player/video_player.dart';
 import 'package:yunxin_alog/yunxin_alog.dart';
-import 'package:nim_core/nim_core.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../chat_kit_client.dart';
 import '../../generated/l10n.dart';
@@ -480,7 +480,8 @@ class _BottomInputFieldState extends State<BottomInputField>
 
   @override
   void didChangeMetrics() {
-    final bottomInset = WidgetsBinding.instance.window.viewInsets.bottom;
+    final bottomInset = WidgetsBinding
+        .instance.platformDispatcher.views.first.viewInsets.bottom;
     final newValue = bottomInset > 0.0;
     if (newValue != _keyboardShow) {
       setState(() {
