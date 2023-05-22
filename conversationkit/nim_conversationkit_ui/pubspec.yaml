@@ -14,8 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  netease_common_ui:
-    ^1.0.0
+  netease_common_ui: ^1.0.1
 #    path: ../../netease_common_ui
   nim_conversationkit:
     ^1.0.0
@@ -23,11 +22,11 @@ dependencies:
   netease_corekit_im:
     ^1.0.0
 #    path: ../../../netease_corekit/netease_corekit_im
-  nim_core: ^1.0.11
+  nim_core: ^1.6.0
   intl: ^0.17.0
   flutter_svg: ^1.0.3
-  provider: ^6.0.0
-  yunxin_alog: ^1.0.7
+  provider: ^6.0.5
+  yunxin_alog: ^1.0.11
   connectivity_plus: ^2.3.6
   flutter_slidable: ^1.3.1
 
